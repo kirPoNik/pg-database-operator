@@ -1,0 +1,4 @@
+docs/raw/*.tmp
+bin/
+.env
+CLAUDE.local.md
