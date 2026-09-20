@@ -1,0 +1,12 @@
+# kind cluster for the lab. Maps a host port to the Postgres NodePort
+# (deploy/postgres.yaml) so `make run`, running the controller as a plain
+# host process (not yet deployed into the cluster), can reach it at
+# localhost:55432. See docs/build-log.md for why this port pair was chosen.
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+  - role: control-plane
+    extraPortMappings:
+      - containerPort: 30432
+        hostPort: 55432
+        protocol: TCP

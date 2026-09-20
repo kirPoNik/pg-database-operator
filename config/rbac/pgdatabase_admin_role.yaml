@@ -1,0 +1,27 @@
+# This rule is not used by the project pg-database-operator itself.
+# It is provided to allow the cluster admin to help manage permissions for users.
+#
+# Grants full permissions ('*') over lab.pglab.dev.
+# This role is intended for users authorized to modify roles and bindings within the cluster,
+# enabling them to delegate specific permissions to other users or groups as needed.
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: pg-database-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: pgdatabase-admin-role
+rules:
+- apiGroups:
+  - lab.pglab.dev
+  resources:
+  - pgdatabases
+  verbs:
+  - '*'
+- apiGroups:
+  - lab.pglab.dev
+  resources:
+  - pgdatabases/status
+  verbs:
+  - get

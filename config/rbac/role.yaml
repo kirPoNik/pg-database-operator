@@ -1,0 +1,32 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: manager-role
+rules:
+- apiGroups:
+  - lab.pglab.dev
+  resources:
+  - pgdatabases
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - lab.pglab.dev
+  resources:
+  - pgdatabases/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - lab.pglab.dev
+  resources:
+  - pgdatabases/status
+  verbs:
+  - get
+  - patch
+  - update
